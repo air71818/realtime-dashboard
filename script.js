@@ -1,14 +1,14 @@
 const accounts = [
-  { name: "Northstar Labs", plan: "Enterprise", channel: "Organic", mrr: 42800, users: 18420, conversion: 18.4, health: "Healthy" },
-  { name: "Luma Retail", plan: "Growth", channel: "Paid Search", mrr: 22450, users: 9130, conversion: 13.8, health: "Watch" },
-  { name: "Brightline AI", plan: "Enterprise", channel: "Lifecycle", mrr: 53120, users: 22180, conversion: 21.2, health: "Healthy" },
-  { name: "Juniper Cloud", plan: "Scale", channel: "Partner", mrr: 31240, users: 12860, conversion: 16.1, health: "Healthy" },
-  { name: "Atlas Finance", plan: "Enterprise", channel: "Paid Search", mrr: 48650, users: 20300, conversion: 15.7, health: "Watch" },
-  { name: "Cobalt Studio", plan: "Starter", channel: "Organic", mrr: 7140, users: 3110, conversion: 9.4, health: "Healthy" },
-  { name: "Orbit Supply", plan: "Growth", channel: "Lifecycle", mrr: 18490, users: 7410, conversion: 14.9, health: "Healthy" },
-  { name: "Signal Works", plan: "Scale", channel: "Partner", mrr: 29780, users: 11620, conversion: 17.3, health: "Healthy" },
-  { name: "Harbor Metrics", plan: "Growth", channel: "Organic", mrr: 19840, users: 8840, conversion: 12.7, health: "Watch" },
-  { name: "Vertex Health", plan: "Enterprise", channel: "Lifecycle", mrr: 61200, users: 24250, conversion: 22.1, health: "Healthy" }
+  { name: "Northstar Labs", plan: "Enterprise", channel: "Organic", mrr: 42800, users: 18420, conversion: 18.4, health: "Healthy", owner: "Mina Chen", stage: "Expansion", nps: 62, risk: "Low", next: "Finalize security addendum" },
+  { name: "Luma Retail", plan: "Growth", channel: "Paid Search", mrr: 22450, users: 9130, conversion: 13.8, health: "Watch", owner: "Kai Mori", stage: "Adoption", nps: 34, risk: "Medium", next: "Review onboarding drop-off" },
+  { name: "Brightline AI", plan: "Enterprise", channel: "Lifecycle", mrr: 53120, users: 22180, conversion: 21.2, health: "Healthy", owner: "Sofia Lin", stage: "Renewal", nps: 71, risk: "Low", next: "Prepare renewal forecast" },
+  { name: "Juniper Cloud", plan: "Scale", channel: "Partner", mrr: 31240, users: 12860, conversion: 16.1, health: "Healthy", owner: "Noah Park", stage: "Activation", nps: 55, risk: "Low", next: "Schedule partner QBR" },
+  { name: "Atlas Finance", plan: "Enterprise", channel: "Paid Search", mrr: 48650, users: 20300, conversion: 15.7, health: "Watch", owner: "Rina Sato", stage: "Expansion", nps: 29, risk: "High", next: "Escalate SLA review" },
+  { name: "Cobalt Studio", plan: "Starter", channel: "Organic", mrr: 7140, users: 3110, conversion: 9.4, health: "Healthy", owner: "Leo Wang", stage: "Activation", nps: 49, risk: "Low", next: "Send template library" },
+  { name: "Orbit Supply", plan: "Growth", channel: "Lifecycle", mrr: 18490, users: 7410, conversion: 14.9, health: "Healthy", owner: "Mia Ito", stage: "Adoption", nps: 58, risk: "Low", next: "Expand lifecycle playbook" },
+  { name: "Signal Works", plan: "Scale", channel: "Partner", mrr: 29780, users: 11620, conversion: 17.3, health: "Healthy", owner: "Aria Liu", stage: "Renewal", nps: 64, risk: "Low", next: "Confirm pricing tier" },
+  { name: "Harbor Metrics", plan: "Growth", channel: "Organic", mrr: 19840, users: 8840, conversion: 12.7, health: "Watch", owner: "Ken Wu", stage: "Adoption", nps: 31, risk: "Medium", next: "Resolve data freshness issue" },
+  { name: "Vertex Health", plan: "Enterprise", channel: "Lifecycle", mrr: 61200, users: 24250, conversion: 22.1, health: "Healthy", owner: "Aiko Tan", stage: "Expansion", nps: 76, risk: "Low", next: "Build executive success plan" }
 ];
 
 const languageKey = "portfolio-language";
@@ -33,6 +33,10 @@ const translations = {
     "Refresh dashboard": "重新整理儀表板",
     "Export CSV": "匯出 CSV",
     "Dashboard filters": "儀表板篩選",
+    "Saved view": "儲存檢視",
+    "Executive pulse": "高層脈搏",
+    "Growth review": "成長回顧",
+    "Risk watchlist": "風險觀察清單",
     "Date range": "日期範圍",
     "Last 7 days": "最近 7 天",
     "Last 30 days": "最近 30 天",
@@ -77,6 +81,31 @@ const translations = {
     "Watch": "觀察",
     "No live activity": "沒有即時活動",
     "This channel has no matching stream events right now.": "此渠道目前沒有符合的串流事件。",
+    "Dashboard insights": "儀表板洞察",
+    "Segment pipeline": "分群 pipeline",
+    "Mock cohort movement by lifecycle stage.": "依生命週期階段呈現的 mock cohort 移動。",
+    "Revenue forecast": "營收預測",
+    "Projected quarter close against target.": "季度預估收盤與目標比較。",
+    "On track": "進度正常",
+    "Needs attention": "需要注意",
+    "Alert queue": "警示佇列",
+    "Prioritized mock incidents for operator review.": "供操作人員審查的 mock 事件優先序。",
+    "Account detail panel": "帳戶詳細面板",
+    "Account detail": "帳戶詳細",
+    "Close account detail": "關閉帳戶詳細",
+    "Owner": "負責人",
+    "Risk": "風險",
+    "Low": "低",
+    "Medium": "中",
+    "High": "高",
+    "Stage": "階段",
+    "Activation": "啟用",
+    "Adoption": "採用",
+    "Expansion": "擴張",
+    "Renewal": "續約",
+    "Next action": "下一步",
+    "Mock timeline": "Mock 時間線",
+    "QBR prepared · Expansion signal detected · Health reviewed": "QBR 已準備 · 偵測到擴張訊號 · 健康度已審查",
     "account": "個帳戶",
     "accounts": "個帳戶",
     "revenue": "營收",
@@ -101,6 +130,10 @@ const translations = {
     "Refresh dashboard": "ダッシュボードを更新",
     "Export CSV": "CSV を出力",
     "Dashboard filters": "ダッシュボードフィルター",
+    "Saved view": "保存ビュー",
+    "Executive pulse": "エグゼクティブパルス",
+    "Growth review": "成長レビュー",
+    "Risk watchlist": "リスクウォッチリスト",
     "Date range": "期間",
     "Last 7 days": "直近 7 日",
     "Last 30 days": "直近 30 日",
@@ -145,6 +178,31 @@ const translations = {
     "Watch": "要確認",
     "No live activity": "ライブアクティビティなし",
     "This channel has no matching stream events right now.": "このチャネルには現在一致するイベントがありません。",
+    "Dashboard insights": "ダッシュボードインサイト",
+    "Segment pipeline": "セグメントパイプライン",
+    "Mock cohort movement by lifecycle stage.": "ライフサイクル段階別のモックコホート推移。",
+    "Revenue forecast": "売上予測",
+    "Projected quarter close against target.": "四半期着地予測と目標の比較。",
+    "On track": "順調",
+    "Needs attention": "注意が必要",
+    "Alert queue": "アラートキュー",
+    "Prioritized mock incidents for operator review.": "オペレーター確認用に優先付けされたモックインシデント。",
+    "Account detail panel": "アカウント詳細パネル",
+    "Account detail": "アカウント詳細",
+    "Close account detail": "アカウント詳細を閉じる",
+    "Owner": "担当者",
+    "Risk": "リスク",
+    "Low": "低",
+    "Medium": "中",
+    "High": "高",
+    "Stage": "段階",
+    "Activation": "アクティベーション",
+    "Adoption": "定着",
+    "Expansion": "拡大",
+    "Renewal": "更新",
+    "Next action": "次のアクション",
+    "Mock timeline": "モックタイムライン",
+    "QBR prepared · Expansion signal detected · Health reviewed": "QBR 準備済み · 拡大シグナル検出 · ヘルス確認済み",
     "account": "件",
     "accounts": "件",
     "revenue": "売上",
@@ -244,7 +302,20 @@ const activity = [
   ["Partner cohort activated 37 seats", "Partner · 17 minutes ago"]
 ];
 
+const alerts = [
+  { title: "Atlas Finance SLA review overdue", detail: "Enterprise account has two unresolved reliability notes.", severity: "critical" },
+  { title: "Paid Search CPA above target", detail: "Acquisition cost is 14% above the executive pulse view.", severity: "warning" },
+  { title: "Harbor Metrics data freshness", detail: "Warehouse sync is delayed by 22 minutes.", severity: "warning" }
+];
+
+const savedViews = {
+  executive: { dateRange: "30", channel: "all", query: "", chartMetric: "revenue" },
+  growth: { dateRange: "90", channel: "Lifecycle", query: "", chartMetric: "users" },
+  risk: { dateRange: "30", channel: "all", query: "finance", chartMetric: "revenue" }
+};
+
 const state = {
+  view: "executive",
   dateRange: "30",
   channel: "all",
   query: "",
@@ -254,6 +325,7 @@ const state = {
 };
 
 const elements = {
+  viewFilter: document.querySelector("#viewFilter"),
   dateFilter: document.querySelector("#dateFilter"),
   channelFilter: document.querySelector("#channelFilter"),
   searchInput: document.querySelector("#searchInput"),
@@ -268,7 +340,18 @@ const elements = {
   resultCount: document.querySelector("#resultCount"),
   activityFeed: document.querySelector("#activityFeed"),
   chart: document.querySelector("#trendChart"),
-  tooltip: document.querySelector("#chartTooltip")
+  tooltip: document.querySelector("#chartTooltip"),
+  segmentStack: document.querySelector("#segmentStack"),
+  forecastBadge: document.querySelector("#forecastBadge"),
+  forecastValue: document.querySelector("#forecastValue"),
+  forecastProgress: document.querySelector("#forecastProgress"),
+  forecastCopy: document.querySelector("#forecastCopy"),
+  alertList: document.querySelector("#alertList"),
+  drawer: document.querySelector("#accountDrawer"),
+  drawerScrim: document.querySelector("#drawerScrim"),
+  closeDrawer: document.querySelector("#closeDrawer"),
+  drawerTitle: document.querySelector("#drawerTitle"),
+  drawerBody: document.querySelector("#drawerBody")
 };
 
 const ctx = elements.chart.getContext("2d");
@@ -343,8 +426,8 @@ function renderTable(rows) {
     return;
   }
 
-  elements.accountTable.innerHTML = rows.map((account) => `
-    <tr>
+  elements.accountTable.innerHTML = rows.map((account, index) => `
+    <tr data-account-index="${accounts.indexOf(account)}">
       <td>
         <div class="account-cell">
           <span class="avatar">${account.name.slice(0, 1)}</span>
@@ -358,6 +441,72 @@ function renderTable(rows) {
       <td><span class="pill ${account.health === "Healthy" ? "health-good" : "health-watch"}">${translateValue(account.health)}</span></td>
     </tr>
   `).join("");
+}
+
+function renderSegments(rows) {
+  const stages = ["Activation", "Adoption", "Expansion", "Renewal"];
+  const max = Math.max(...stages.map((stage) => rows.filter((account) => account.stage === stage).length), 1);
+  elements.segmentStack.innerHTML = stages.map((stage) => {
+    const count = rows.filter((account) => account.stage === stage).length;
+    const percent = Math.max(8, Math.round((count / max) * 100));
+    return `
+      <div class="segment-row">
+        <strong>${stage}</strong>
+        <div class="bar-track" aria-hidden="true"><span style="width: ${percent}%"></span></div>
+        <span>${count}</span>
+      </div>
+    `;
+  }).join("");
+}
+
+function renderForecast(rows) {
+  const metrics = calculateMetrics(rows);
+  const target = 320000;
+  const projected = Math.round(metrics.revenue * 1.18);
+  const percent = Math.min(100, Math.round((projected / target) * 100));
+  elements.forecastValue.textContent = formatCurrency(projected);
+  elements.forecastProgress.style.width = `${percent}%`;
+  elements.forecastBadge.textContent = percent >= 92 ? "On track" : "Needs attention";
+  elements.forecastCopy.textContent = `${percent}% of quarterly target covered by selected accounts.`;
+}
+
+function renderAlerts() {
+  elements.alertList.innerHTML = alerts.map((alert) => `
+    <article class="alert-item ${alert.severity === "critical" ? "critical" : ""}">
+      <strong>${alert.title}</strong>
+      <small>${alert.detail}</small>
+    </article>
+  `).join("");
+}
+
+function openDrawer(account) {
+  elements.drawerTitle.textContent = account.name;
+  elements.drawerBody.innerHTML = `
+    <div class="drawer-stat-grid">
+      <div class="drawer-stat"><span>Owner</span><strong>${account.owner}</strong></div>
+      <div class="drawer-stat"><span>Risk</span><strong>${account.risk}</strong></div>
+      <div class="drawer-stat"><span>NPS</span><strong>${account.nps}</strong></div>
+      <div class="drawer-stat"><span>Stage</span><strong>${account.stage}</strong></div>
+    </div>
+    <div class="timeline-item">
+      <span>Next action</span>
+      <strong>${account.next}</strong>
+    </div>
+    <div class="timeline-item">
+      <span>Mock timeline</span>
+      <strong>QBR prepared · Expansion signal detected · Health reviewed</strong>
+    </div>
+  `;
+  elements.drawer.classList.add("open");
+  elements.drawer.setAttribute("aria-hidden", "false");
+  elements.drawerScrim.hidden = false;
+  translatePage();
+}
+
+function closeDrawer() {
+  elements.drawer.classList.remove("open");
+  elements.drawer.setAttribute("aria-hidden", "true");
+  elements.drawerScrim.hidden = true;
 }
 
 function renderActivity(rows) {
@@ -490,6 +639,9 @@ function render() {
   const rows = filteredAccounts();
   renderMetrics(rows);
   renderTable(rows);
+  renderSegments(rows);
+  renderForecast(rows);
+  renderAlerts();
   renderActivity(rows);
   drawChart();
   translatePage();
@@ -517,6 +669,18 @@ function exportCsv() {
   link.click();
   URL.revokeObjectURL(url);
 }
+
+elements.viewFilter.addEventListener("change", (event) => {
+  state.view = event.target.value;
+  Object.assign(state, savedViews[state.view]);
+  elements.dateFilter.value = state.dateRange;
+  elements.channelFilter.value = state.channel;
+  elements.searchInput.value = state.query;
+  document.querySelectorAll("[data-chart-metric]").forEach((item) => {
+    item.classList.toggle("active", item.dataset.chartMetric === state.chartMetric);
+  });
+  render();
+});
 
 elements.dateFilter.addEventListener("change", (event) => {
   state.dateRange = event.target.value;
@@ -551,6 +715,15 @@ elements.chart.addEventListener("mouseleave", () => {
   elements.tooltip.hidden = true;
   drawChart();
 });
+
+elements.accountTable.addEventListener("click", (event) => {
+  const row = event.target.closest("tr[data-account-index]");
+  if (!row) return;
+  openDrawer(accounts[Number(row.dataset.accountIndex)]);
+});
+
+elements.closeDrawer.addEventListener("click", closeDrawer);
+elements.drawerScrim.addEventListener("click", closeDrawer);
 
 window.addEventListener("resize", drawChart);
 document.querySelectorAll("[data-lang]").forEach((button) => {

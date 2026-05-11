@@ -71,6 +71,14 @@
 
       <section class="filters" aria-label="Dashboard filters">
         <label>
+          Saved view
+          <select id="viewFilter">
+            <option value="executive" selected>Executive pulse</option>
+            <option value="growth">Growth review</option>
+            <option value="risk">Risk watchlist</option>
+          </select>
+        </label>
+        <label>
           Date range
           <select id="dateFilter">
             <option value="7">Last 7 days</option>
@@ -162,6 +170,43 @@
         </aside>
       </section>
 
+      <section class="insight-grid" aria-label="Dashboard insights">
+        <article class="panel segment-panel" aria-labelledby="segmentsTitle">
+          <div class="panel-header">
+            <div>
+              <h2 id="segmentsTitle">Segment pipeline</h2>
+              <p>Mock cohort movement by lifecycle stage.</p>
+            </div>
+          </div>
+          <div class="segment-stack" id="segmentStack"></div>
+        </article>
+
+        <article class="panel forecast-panel" aria-labelledby="forecastTitle">
+          <div class="panel-header">
+            <div>
+              <h2 id="forecastTitle">Revenue forecast</h2>
+              <p>Projected quarter close against target.</p>
+            </div>
+            <span id="forecastBadge" class="result-count">On track</span>
+          </div>
+          <div class="forecast-body">
+            <strong id="forecastValue"></strong>
+            <div class="progress-track" aria-hidden="true"><span id="forecastProgress"></span></div>
+            <p id="forecastCopy"></p>
+          </div>
+        </article>
+
+        <article class="panel alert-panel" aria-labelledby="alertsTitle">
+          <div class="panel-header compact">
+            <div>
+              <h2 id="alertsTitle">Alert queue</h2>
+              <p>Prioritized mock incidents for operator review.</p>
+            </div>
+          </div>
+          <div class="alert-list" id="alertList"></div>
+        </article>
+      </section>
+
       <section class="panel table-panel" aria-labelledby="tableTitle">
         <div class="panel-header">
           <div>
@@ -196,6 +241,18 @@
       </section>
     </main>
   </div>
+
+  <div class="drawer-scrim" id="drawerScrim" hidden></div>
+  <aside class="account-drawer" id="accountDrawer" aria-label="Account detail panel" aria-hidden="true">
+    <div class="drawer-head">
+      <div>
+        <p class="eyebrow">Account detail</p>
+        <h2 id="drawerTitle">Account</h2>
+      </div>
+      <button class="icon-button" type="button" id="closeDrawer" aria-label="Close account detail">×</button>
+    </div>
+    <div id="drawerBody" class="drawer-body"></div>
+  </aside>
 
   <script src="script.js"></script>
 </body>
