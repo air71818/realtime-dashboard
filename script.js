@@ -11,6 +11,204 @@ const accounts = [
   { name: "Vertex Health", plan: "Enterprise", channel: "Lifecycle", mrr: 61200, users: 24250, conversion: 22.1, health: "Healthy" }
 ];
 
+const languageKey = "portfolio-language";
+
+const translations = {
+  zh: {
+    "Primary navigation": "主要導覽",
+    "PulseOps home": "PulseOps 首頁",
+    "Realtime Analytics": "即時分析",
+    "Dashboard sections": "儀表板區段",
+    "Overview": "總覽",
+    "Segments": "分群",
+    "Events": "事件",
+    "Health": "健康度",
+    "Live stream": "即時串流",
+    "Updated every few seconds": "每幾秒更新一次",
+    "SaaS command center": "SaaS 指揮中心",
+    "Realtime Dashboard": "即時儀表板",
+    "Monitor acquisition, conversion, revenue, and incidents across live product channels.": "監控即時產品渠道中的獲客、轉換、營收與事件。",
+    "Dashboard actions": "儀表板操作",
+    "Language": "語言",
+    "Refresh dashboard": "重新整理儀表板",
+    "Export CSV": "匯出 CSV",
+    "Dashboard filters": "儀表板篩選",
+    "Date range": "日期範圍",
+    "Last 7 days": "最近 7 天",
+    "Last 30 days": "最近 30 天",
+    "Last 90 days": "最近 90 天",
+    "Channel": "渠道",
+    "All channels": "所有渠道",
+    "Organic": "自然流量",
+    "Paid Search": "付費搜尋",
+    "Lifecycle": "生命週期",
+    "Partner": "合作夥伴",
+    "Search accounts": "搜尋帳戶",
+    "Search by customer or plan": "依客戶或方案搜尋",
+    "Key metrics": "關鍵指標",
+    "Revenue": "營收",
+    "Monthly recurring revenue": "月 recurring revenue",
+    "Active users": "活躍使用者",
+    "Unique users in selected window": "所選期間的不重複使用者",
+    "Conversion": "轉換率",
+    "Trial to paid conversion rate": "試用轉付費轉換率",
+    "Incidents": "事件",
+    "Customer-impacting alerts": "影響客戶的警示",
+    "Revenue trend": "營收趨勢",
+    "Hover or tap a point to inspect channel performance.": "滑過或點擊節點查看渠道表現。",
+    "Chart metric": "圖表指標",
+    "Users": "使用者",
+    "Interactive trend chart": "互動趨勢圖",
+    "Live activity": "即時活動",
+    "Recent stream events": "近期串流事件",
+    "Account performance": "帳戶表現",
+    "Filtered customer accounts and health signals.": "篩選後的客戶帳戶與健康度訊號。",
+    "Loading": "載入中",
+    "Account": "帳戶",
+    "Plan": "方案",
+    "MRR": "MRR",
+    "No accounts match the current filters.": "沒有帳戶符合目前篩選。",
+    "Adjust the date range, channel, or search query to broaden the results.": "調整日期範圍、渠道或搜尋條件以擴大結果。",
+    "Enterprise": "企業版",
+    "Growth": "成長版",
+    "Scale": "規模型",
+    "Starter": "入門版",
+    "Healthy": "健康",
+    "Watch": "觀察",
+    "No live activity": "沒有即時活動",
+    "This channel has no matching stream events right now.": "此渠道目前沒有符合的串流事件。",
+    "account": "個帳戶",
+    "accounts": "個帳戶",
+    "revenue": "營收",
+    "users": "使用者"
+  },
+  ja: {
+    "Primary navigation": "メインナビゲーション",
+    "PulseOps home": "PulseOps ホーム",
+    "Realtime Analytics": "リアルタイム分析",
+    "Dashboard sections": "ダッシュボードセクション",
+    "Overview": "概要",
+    "Segments": "セグメント",
+    "Events": "イベント",
+    "Health": "ヘルス",
+    "Live stream": "ライブストリーム",
+    "Updated every few seconds": "数秒ごとに更新",
+    "SaaS command center": "SaaS コマンドセンター",
+    "Realtime Dashboard": "リアルタイムダッシュボード",
+    "Monitor acquisition, conversion, revenue, and incidents across live product channels.": "ライブのプロダクトチャネルにおける獲得、転換、売上、インシデントを監視します。",
+    "Dashboard actions": "ダッシュボード操作",
+    "Language": "言語",
+    "Refresh dashboard": "ダッシュボードを更新",
+    "Export CSV": "CSV を出力",
+    "Dashboard filters": "ダッシュボードフィルター",
+    "Date range": "期間",
+    "Last 7 days": "直近 7 日",
+    "Last 30 days": "直近 30 日",
+    "Last 90 days": "直近 90 日",
+    "Channel": "チャネル",
+    "All channels": "すべてのチャネル",
+    "Organic": "オーガニック",
+    "Paid Search": "有料検索",
+    "Lifecycle": "ライフサイクル",
+    "Partner": "パートナー",
+    "Search accounts": "アカウント検索",
+    "Search by customer or plan": "顧客名またはプランで検索",
+    "Key metrics": "主要指標",
+    "Revenue": "売上",
+    "Monthly recurring revenue": "月間経常収益",
+    "Active users": "アクティブユーザー",
+    "Unique users in selected window": "選択期間のユニークユーザー",
+    "Conversion": "コンバージョン",
+    "Trial to paid conversion rate": "トライアルから有料への転換率",
+    "Incidents": "インシデント",
+    "Customer-impacting alerts": "顧客影響のあるアラート",
+    "Revenue trend": "売上トレンド",
+    "Hover or tap a point to inspect channel performance.": "ポイントにホバーまたはタップしてチャネル実績を確認します。",
+    "Chart metric": "チャート指標",
+    "Users": "ユーザー",
+    "Interactive trend chart": "インタラクティブなトレンドチャート",
+    "Live activity": "ライブアクティビティ",
+    "Recent stream events": "最近のストリームイベント",
+    "Account performance": "アカウント実績",
+    "Filtered customer accounts and health signals.": "絞り込まれた顧客アカウントとヘルスシグナル。",
+    "Loading": "読み込み中",
+    "Account": "アカウント",
+    "Plan": "プラン",
+    "MRR": "MRR",
+    "No accounts match the current filters.": "現在のフィルターに一致するアカウントはありません。",
+    "Adjust the date range, channel, or search query to broaden the results.": "期間、チャネル、検索条件を調整して結果を広げてください。",
+    "Enterprise": "エンタープライズ",
+    "Growth": "グロース",
+    "Scale": "スケール",
+    "Starter": "スターター",
+    "Healthy": "良好",
+    "Watch": "要確認",
+    "No live activity": "ライブアクティビティなし",
+    "This channel has no matching stream events right now.": "このチャネルには現在一致するイベントがありません。",
+    "account": "件",
+    "accounts": "件",
+    "revenue": "売上",
+    "users": "ユーザー"
+  }
+};
+
+const baseTextNodes = new WeakMap();
+const translatableAttributes = ["aria-label", "title", "placeholder"];
+
+function normalizeText(value) {
+  return value.replace(/\s+/g, " ").trim();
+}
+
+function getStoredLanguage() {
+  try {
+    return localStorage.getItem(languageKey) || "en";
+  } catch {
+    return "en";
+  }
+}
+
+function setStoredLanguage(language) {
+  try {
+    localStorage.setItem(languageKey, language);
+  } catch {
+    return;
+  }
+}
+
+function translateValue(value, language = getStoredLanguage()) {
+  const key = normalizeText(value);
+  if (!key || language === "en") return key;
+  return translations[language]?.[key] || key;
+}
+
+function translatePage(language = getStoredLanguage()) {
+  document.documentElement.lang = language === "zh" ? "zh-Hant" : language;
+  document.querySelectorAll("[data-lang]").forEach((button) => {
+    button.classList.toggle("active", button.dataset.lang === language);
+  });
+
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  while (walker.nextNode()) {
+    const node = walker.currentNode;
+    const parent = node.parentElement;
+    if (!parent || parent.closest(".language-switcher") || ["SCRIPT", "STYLE"].includes(parent.tagName)) continue;
+    const base = baseTextNodes.get(node) || normalizeText(node.nodeValue);
+    if (!base) continue;
+    baseTextNodes.set(node, base);
+    node.nodeValue = translateValue(base, language);
+  }
+
+  document.querySelectorAll("*").forEach((element) => {
+    translatableAttributes.forEach((attribute) => {
+      if (!element.hasAttribute(attribute)) return;
+      const baseAttribute = `data-base-${attribute}`;
+      const base = element.getAttribute(baseAttribute) || element.getAttribute(attribute);
+      element.setAttribute(baseAttribute, base);
+      element.setAttribute(attribute, translateValue(base, language));
+    });
+  });
+}
+
 const trendData = {
   7: [
     { label: "Mon", revenue: 42, users: 12 },
@@ -76,15 +274,19 @@ const elements = {
 const ctx = elements.chart.getContext("2d");
 
 function formatCurrency(value) {
+  const language = getStoredLanguage();
+  const locale = language === "ja" ? "ja-JP" : language === "zh" ? "zh-TW" : "en-US";
   return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
     maximumFractionDigits: 0
-  }).format(value);
+  }).format(value).replace("$", locale === "en-US" ? "$" : "US$");
 }
 
 function formatNumber(value) {
-  return new Intl.NumberFormat("en-US").format(Math.round(value));
+  const language = getStoredLanguage();
+  const locale = language === "ja" ? "ja-JP" : language === "zh" ? "zh-TW" : "en-US";
+  return new Intl.NumberFormat(locale).format(Math.round(value));
 }
 
 function filteredAccounts() {
@@ -133,7 +335,8 @@ function renderMetrics(rows) {
 
 function renderTable(rows) {
   elements.emptyState.hidden = rows.length > 0;
-  elements.resultCount.textContent = `${rows.length} account${rows.length === 1 ? "" : "s"}`;
+  const unit = rows.length === 1 ? translateValue("account") : translateValue("accounts");
+  elements.resultCount.textContent = `${rows.length} ${unit}`;
 
   if (!rows.length) {
     elements.accountTable.innerHTML = "";
@@ -148,11 +351,11 @@ function renderTable(rows) {
           <strong>${account.name}</strong>
         </div>
       </td>
-      <td>${account.plan}</td>
-      <td><span class="pill">${account.channel}</span></td>
+      <td>${translateValue(account.plan)}</td>
+      <td><span class="pill">${translateValue(account.channel)}</span></td>
       <td>${formatCurrency(account.mrr)}</td>
       <td>${formatNumber(account.users)}</td>
-      <td><span class="pill ${account.health === "Healthy" ? "health-good" : "health-watch"}">${account.health}</span></td>
+      <td><span class="pill ${account.health === "Healthy" ? "health-good" : "health-watch"}">${translateValue(account.health)}</span></td>
     </tr>
   `).join("");
 }
@@ -279,7 +482,7 @@ function updateTooltip(event) {
   elements.tooltip.hidden = false;
   elements.tooltip.style.left = `${Math.min(event.clientX - rect.left + 16, rect.width - 170)}px`;
   elements.tooltip.style.top = `${Math.max(event.clientY - rect.top - 20, 10)}px`;
-  elements.tooltip.innerHTML = `<strong>${point.label}</strong><br>${state.chartMetric === "revenue" ? `$${value}k revenue` : `${value}k users`}`;
+  elements.tooltip.innerHTML = `<strong>${point.label}</strong><br>${state.chartMetric === "revenue" ? `$${value}k ${translateValue("revenue")}` : `${value}k ${translateValue("users")}`}`;
   drawChart();
 }
 
@@ -289,11 +492,12 @@ function render() {
   renderTable(rows);
   renderActivity(rows);
   drawChart();
+  translatePage();
 }
 
 function simulateLoad() {
   setLoading(true);
-  elements.resultCount.textContent = "Loading";
+  elements.resultCount.textContent = translateValue("Loading");
   window.setTimeout(() => {
     setLoading(false);
     render();
@@ -349,4 +553,12 @@ elements.chart.addEventListener("mouseleave", () => {
 });
 
 window.addEventListener("resize", drawChart);
+document.querySelectorAll("[data-lang]").forEach((button) => {
+  button.addEventListener("click", () => {
+    setStoredLanguage(button.dataset.lang);
+    render();
+  });
+});
+
+translatePage();
 simulateLoad();

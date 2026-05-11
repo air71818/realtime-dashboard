@@ -186,6 +186,33 @@ h1 {
   flex: 0 0 auto;
 }
 
+.language-switcher {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+}
+
+.language-switcher button {
+  min-width: 42px;
+  height: 34px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.language-switcher button.active {
+  background: var(--ink);
+  color: #fff;
+}
+
 .icon-button,
 .primary-button,
 .segment {
@@ -621,6 +648,14 @@ td {
   input,
   .primary-button {
     width: 100%;
+  }
+
+  .language-switcher {
+    width: 100%;
+  }
+
+  .language-switcher button {
+    flex: 1;
   }
 
   .icon-button {
