@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A static SaaS realtime analytics dashboard portfolio project.">
+  <title>PulseOps Realtime Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Primary navigation">
+      <a class="brand" href="#" aria-label="PulseOps home">
+        <span class="brand-mark">P</span>
+        <span>
+          <strong>PulseOps</strong>
+          <small>Realtime Analytics</small>
+        </span>
+      </a>
+
+      <nav class="nav-list" aria-label="Dashboard sections">
+        <a class="nav-item active" href="#overview">
+          <span aria-hidden="true">⌁</span>
+          Overview
+        </a>
+        <a class="nav-item" href="#segments">
+          <span aria-hidden="true">◱</span>
+          Segments
+        </a>
+        <a class="nav-item" href="#events">
+          <span aria-hidden="true">◇</span>
+          Events
+        </a>
+        <a class="nav-item" href="#health">
+          <span aria-hidden="true">●</span>
+          Health
+        </a>
+      </nav>
+
+      <div class="status-panel">
+        <span class="status-dot"></span>
+        <div>
+          <strong>Live stream</strong>
+          <small>Updated every few seconds</small>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">SaaS command center</p>
+          <h1>Realtime Dashboard</h1>
+          <p class="subtitle">Monitor acquisition, conversion, revenue, and incidents across live product channels.</p>
+        </div>
+        <div class="topbar-actions" aria-label="Dashboard actions">
+          <button class="icon-button" type="button" id="refreshButton" aria-label="Refresh dashboard">
+            ↻
+          </button>
+          <button class="primary-button" type="button" id="exportButton">Export CSV</button>
+        </div>
+      </header>
+
+      <section class="filters" aria-label="Dashboard filters">
+        <label>
+          Date range
+          <select id="dateFilter">
+            <option value="7">Last 7 days</option>
+            <option value="30" selected>Last 30 days</option>
+            <option value="90">Last 90 days</option>
+          </select>
+        </label>
+        <label>
+          Channel
+          <select id="channelFilter">
+            <option value="all" selected>All channels</option>
+            <option value="Organic">Organic</option>
+            <option value="Paid Search">Paid Search</option>
+            <option value="Lifecycle">Lifecycle</option>
+            <option value="Partner">Partner</option>
+          </select>
+        </label>
+        <label>
+          Search accounts
+          <input id="searchInput" type="search" placeholder="Search by customer or plan">
+        </label>
+      </section>
+
+      <section class="metrics-grid" aria-label="Key metrics">
+        <article class="metric-card">
+          <div class="metric-header">
+            <span>Revenue</span>
+            <span class="trend up">+12.8%</span>
+          </div>
+          <strong id="metricRevenue" class="metric-value skeleton-block"></strong>
+          <small>Monthly recurring revenue</small>
+        </article>
+        <article class="metric-card">
+          <div class="metric-header">
+            <span>Active users</span>
+            <span class="trend up">+7.4%</span>
+          </div>
+          <strong id="metricUsers" class="metric-value skeleton-block"></strong>
+          <small>Unique users in selected window</small>
+        </article>
+        <article class="metric-card">
+          <div class="metric-header">
+            <span>Conversion</span>
+            <span class="trend down">-1.3%</span>
+          </div>
+          <strong id="metricConversion" class="metric-value skeleton-block"></strong>
+          <small>Trial to paid conversion rate</small>
+        </article>
+        <article class="metric-card">
+          <div class="metric-header">
+            <span>Incidents</span>
+            <span class="trend neutral">0 open</span>
+          </div>
+          <strong id="metricIncidents" class="metric-value skeleton-block"></strong>
+          <small>Customer-impacting alerts</small>
+        </article>
+      </section>
+
+      <section class="dashboard-grid">
+        <article class="panel chart-panel" aria-labelledby="chartTitle">
+          <div class="panel-header">
+            <div>
+              <h2 id="chartTitle">Revenue trend</h2>
+              <p>Hover or tap a point to inspect channel performance.</p>
+            </div>
+            <div class="segmented" role="group" aria-label="Chart metric">
+              <button class="segment active" type="button" data-chart-metric="revenue">Revenue</button>
+              <button class="segment" type="button" data-chart-metric="users">Users</button>
+            </div>
+          </div>
+          <div class="chart-wrap">
+            <canvas id="trendChart" width="900" height="360" aria-label="Interactive trend chart"></canvas>
+            <div class="chart-tooltip" id="chartTooltip" hidden></div>
+          </div>
+        </article>
+
+        <aside class="panel activity-panel" aria-labelledby="activityTitle">
+          <div class="panel-header compact">
+            <div>
+              <h2 id="activityTitle">Live activity</h2>
+              <p>Recent stream events</p>
+            </div>
+          </div>
+          <div id="activityFeed" class="activity-feed" aria-live="polite">
+            <div class="feed-skeleton"></div>
+            <div class="feed-skeleton short"></div>
+            <div class="feed-skeleton"></div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="panel table-panel" aria-labelledby="tableTitle">
+        <div class="panel-header">
+          <div>
+            <h2 id="tableTitle">Account performance</h2>
+            <p>Filtered customer accounts and health signals.</p>
+          </div>
+          <span id="resultCount" class="result-count">Loading</span>
+        </div>
+        <div class="table-shell">
+          <table>
+            <thead>
+              <tr>
+                <th>Account</th>
+                <th>Plan</th>
+                <th>Channel</th>
+                <th>MRR</th>
+                <th>Users</th>
+                <th>Health</th>
+              </tr>
+            </thead>
+            <tbody id="accountTable">
+              <tr class="skeleton-row"><td colspan="6"></td></tr>
+              <tr class="skeleton-row"><td colspan="6"></td></tr>
+              <tr class="skeleton-row"><td colspan="6"></td></tr>
+            </tbody>
+          </table>
+          <div id="emptyState" class="empty-state" hidden>
+            <strong>No accounts match the current filters.</strong>
+            <span>Adjust the date range, channel, or search query to broaden the results.</span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
