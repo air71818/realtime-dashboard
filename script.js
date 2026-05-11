@@ -91,6 +91,14 @@ const translations = {
     "Alert queue": "警示佇列",
     "Prioritized mock incidents for operator review.": "供操作人員審查的 mock 事件優先序。",
     "Account detail panel": "帳戶詳細面板",
+    "Operational planning": "營運規劃",
+    "Scenario planner": "情境規劃器",
+    "Adjust mock growth assumptions and see forecast impact.": "調整 mock 成長假設並查看預測影響。",
+    "Expansion lift": "擴張提升",
+    "Churn risk": "流失風險",
+    "Adjusted forecast": "調整後預測",
+    "Cohort heatmap": "Cohort 熱力圖",
+    "Mock activation quality by channel and lifecycle stage.": "依渠道與生命週期階段呈現 mock 啟用品質。",
     "Account detail": "帳戶詳細",
     "Close account detail": "關閉帳戶詳細",
     "Owner": "負責人",
@@ -188,6 +196,14 @@ const translations = {
     "Alert queue": "アラートキュー",
     "Prioritized mock incidents for operator review.": "オペレーター確認用に優先付けされたモックインシデント。",
     "Account detail panel": "アカウント詳細パネル",
+    "Operational planning": "運用計画",
+    "Scenario planner": "シナリオプランナー",
+    "Adjust mock growth assumptions and see forecast impact.": "成長仮説を調整し、予測への影響を確認します。",
+    "Expansion lift": "拡大利得",
+    "Churn risk": "解約リスク",
+    "Adjusted forecast": "調整後予測",
+    "Cohort heatmap": "コホートヒートマップ",
+    "Mock activation quality by channel and lifecycle stage.": "チャネルとライフサイクル段階別のモック有効化品質。",
     "Account detail": "アカウント詳細",
     "Close account detail": "アカウント詳細を閉じる",
     "Owner": "担当者",
@@ -308,6 +324,15 @@ const alerts = [
   { title: "Harbor Metrics data freshness", detail: "Warehouse sync is delayed by 22 minutes.", severity: "warning" }
 ];
 
+const heatmapRows = ["Organic", "Paid Search", "Lifecycle", "Partner"];
+const heatmapColumns = ["Activation", "Adoption", "Expansion", "Renewal"];
+const heatmapScores = [
+  [82, 76, 91, 68],
+  [58, 64, 71, 52],
+  [74, 88, 84, 93],
+  [69, 72, 79, 81]
+];
+
 const savedViews = {
   executive: { dateRange: "30", channel: "all", query: "", chartMetric: "revenue" },
   growth: { dateRange: "90", channel: "Lifecycle", query: "", chartMetric: "users" },
@@ -347,6 +372,11 @@ const elements = {
   forecastProgress: document.querySelector("#forecastProgress"),
   forecastCopy: document.querySelector("#forecastCopy"),
   alertList: document.querySelector("#alertList"),
+  expansionLift: document.querySelector("#expansionLift"),
+  churnRisk: document.querySelector("#churnRisk"),
+  scenarioForecast: document.querySelector("#scenarioForecast"),
+  scenarioCopy: document.querySelector("#scenarioCopy"),
+  cohortHeatmap: document.querySelector("#cohortHeatmap"),
   drawer: document.querySelector("#accountDrawer"),
   drawerScrim: document.querySelector("#drawerScrim"),
   closeDrawer: document.querySelector("#closeDrawer"),
@@ -477,6 +507,24 @@ function renderAlerts() {
       <small>${alert.detail}</small>
     </article>
   `).join("");
+}
+
+function renderScenario(rows) {
+  const base = calculateMetrics(rows).revenue * 1.18;
+  const lift = Number(elements.expansionLift.value);
+  const churn = Number(elements.churnRisk.value);
+  const adjusted = Math.round(base * (1 + lift / 100) * (1 - churn / 100));
+  elements.scenarioForecast.textContent = formatCurrency(adjusted);
+  elements.scenarioCopy.textContent = `+${lift}% expansion lift with ${churn}% churn risk.`;
+}
+
+function renderHeatmap() {
+  const header = [`<div class="heatmap-label">Channel</div>`, ...heatmapColumns.map((column) => `<div class="heatmap-label">${column}</div>`)];
+  const rows = heatmapRows.flatMap((row, rowIndex) => [
+    `<div class="heatmap-label">${row}</div>`,
+    ...heatmapScores[rowIndex].map((score) => `<div class="heatmap-cell" style="--heat: ${score}%">${score}</div>`)
+  ]);
+  elements.cohortHeatmap.innerHTML = [...header, ...rows].join("");
 }
 
 function openDrawer(account) {
@@ -642,6 +690,8 @@ function render() {
   renderSegments(rows);
   renderForecast(rows);
   renderAlerts();
+  renderScenario(rows);
+  renderHeatmap();
   renderActivity(rows);
   drawChart();
   translatePage();
@@ -724,6 +774,8 @@ elements.accountTable.addEventListener("click", (event) => {
 
 elements.closeDrawer.addEventListener("click", closeDrawer);
 elements.drawerScrim.addEventListener("click", closeDrawer);
+elements.expansionLift.addEventListener("input", render);
+elements.churnRisk.addEventListener("input", render);
 
 window.addEventListener("resize", drawChart);
 document.querySelectorAll("[data-lang]").forEach((button) => {

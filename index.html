@@ -207,6 +207,42 @@
         </article>
       </section>
 
+      <section class="operations-grid" aria-label="Operational planning">
+        <article class="panel planner-panel" aria-labelledby="plannerTitle">
+          <div class="panel-header">
+            <div>
+              <h2 id="plannerTitle">Scenario planner</h2>
+              <p>Adjust mock growth assumptions and see forecast impact.</p>
+            </div>
+          </div>
+          <div class="planner-body">
+            <label>
+              Expansion lift
+              <input id="expansionLift" type="range" min="0" max="24" value="12">
+            </label>
+            <label>
+              Churn risk
+              <input id="churnRisk" type="range" min="0" max="18" value="6">
+            </label>
+            <div class="scenario-output">
+              <span>Adjusted forecast</span>
+              <strong id="scenarioForecast"></strong>
+              <small id="scenarioCopy"></small>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel heatmap-panel" aria-labelledby="heatmapTitle">
+          <div class="panel-header">
+            <div>
+              <h2 id="heatmapTitle">Cohort heatmap</h2>
+              <p>Mock activation quality by channel and lifecycle stage.</p>
+            </div>
+          </div>
+          <div class="heatmap" id="cohortHeatmap"></div>
+        </article>
+      </section>
+
       <section class="panel table-panel" aria-labelledby="tableTitle">
         <div class="panel-header">
           <div>
